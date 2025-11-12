@@ -8,6 +8,7 @@ public class Application {
         nodeService.addResource(ResourceType.NODE, "node 2");
         nodeService.addResource(ResourceType.NODE, "node 3");
         nodeService.addResource(ResourceType.NODE, "node 4");
+        nodeService.addResource(ResourceType.NODE, "node 5");
 
         nodeService.totalItems();
     }
