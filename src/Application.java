@@ -14,6 +14,7 @@ public class Application {
         nodeService.totalItems();
 
         //added 13/11/2025 12:35 Used for Searching
+        //Java for reading in a console in Intellij - https://www.w3schools.com/java/java_user_input.asp accessed 13/11/2025
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nPLEASE ENTER SOMETHING TO SEARCH FOR: ");
         String term = scanner.nextLine();

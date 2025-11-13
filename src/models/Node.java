@@ -16,6 +16,8 @@ public class Node extends LibraryResource  {
     public void setContent(String mainContent) { this.content = mainContent; }
 
     //added 13/11/2025 12:30 for the search
+    //This code replaces a method that has been inherited from a parent class and displays the true value
+    //https://www.geeksforgeeks.org/java/overriding-in-java/ accessed 13/11/2025
     @Override
     public String toString() {
         return "Node ID: " + nodeid
