@@ -13,12 +13,12 @@ public class Store {
 
 
         if (resource instanceof Node node) {
-            System.out.println("Added Node with ID: " + node.getNodeid() + " " + "Node Title: " + node.getTitle());
+            System.out.println("Added Node with ID: " + node.getNodeid() + " " + "Node Title: " + node.getTitle() + " " + "Node Content: " + node.getContent());
             //System.out.println("Node Title: " + node.getTitle());
         }
     }
 
     public void countResources() {
-        System.out.println("Number of resources: " + resources.size());
+        System.out.println("Number of Resources Stored: " + resources.size());
     }
 }
