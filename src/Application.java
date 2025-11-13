@@ -19,7 +19,7 @@ public class Application {
             System.out.println("SELECT 1 Add a new Node");
             System.out.println("SELECT 2 Search for resources");
             System.out.println("SELECT 3 Show total number of resources");
-            System.out.println("SELECT 4 Edit node");
+            System.out.println("SELECT 4 To Edit a node");
 
             String choice = scanner.nextLine();
 
@@ -57,9 +57,28 @@ public class Application {
 
                 default:
                     System.out.println("Invalid option, please select 1-4.");
+
+                    break;
+
+                case "4":
+                    nodeService.showAllResources(); // show existing nodes
+                    System.out.print("Enter the Node ID to edit: ");
+                    String editId = scanner.nextLine();
+
+                    System.out.print("Enter new title (leave blank to keep current): ");
+                    String newTitle = scanner.nextLine();
+
+                    System.out.print("Enter new content (leave blank to keep current): ");
+                    String newContent = scanner.nextLine();
+
+                    boolean updated = nodeService.updateResource(editId, newTitle, newContent);
+                    if (updated) {
+                        System.out.println("Node updated successfully!");
+                    } else {
+                        System.out.println("Node not found. Please check the ID and try again.");
+                    }
+                    break;
             }
         }
-
-        scanner.close();
     }
 }

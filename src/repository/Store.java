@@ -43,8 +43,8 @@ public class Store {
     }
 
     // Getter for all resources
-    //public List<LibraryResource> getAllResources() {
-        //return new ArrayList<>(resources);
-    //}
+    public List<LibraryResource> getAllResources() {
+        return new ArrayList<>(resources);
+    }
 
 }
