@@ -2,6 +2,7 @@ package service;
 
 import models.*;
 import repository.Store;
+import java.util.List;
 
 public class NodeService {
     private final Store store;
@@ -23,9 +24,17 @@ public class NodeService {
         //store.addResource(resource);
     }
 
+
+
     public void totalItems() {
         store.countResources();
     }
+
+    //Added 13/11/2025 12:35 for the search to work
+    public List<LibraryResource> searchResources(String term) {
+        return store.search(term);
+    }
+    //end of addition - search
 
     private Node createNode(String nodeId, String title, String content) {
         Node node = new Node();
@@ -35,4 +44,5 @@ public class NodeService {
 
         return node;
     }
+
 }
