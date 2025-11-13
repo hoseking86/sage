@@ -10,10 +10,10 @@ public class NodeService {
         this.store = new Store();
     }
 
-    public void addResource(ResourceType rType, String nodeId) {
+    public void addResource(ResourceType rType, String nodeId, String title) {
         LibraryResource resource = null;
         if (rType == ResourceType.NODE) {
-            resource = createNode(nodeId);
+            resource = createNode(nodeId, title);
         }
         if (resource != null) {
             store.addResource(resource);
@@ -26,9 +26,12 @@ public class NodeService {
     public void totalItems() {
         store.countResources();
     }
-    private Node createNode(String nodeId) {
+
+    private Node createNode(String nodeId, String title) {
         Node node = new Node();
         node.setNodeid(nodeId);
+        node.setTitle(title);
+
         return node;
     }
 }

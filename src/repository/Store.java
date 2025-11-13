@@ -13,7 +13,8 @@ public class Store {
 
 
         if (resource instanceof Node node) {
-            System.out.println("Added Node with ID: " + node.getNodeid());
+            System.out.println("Added Node with ID: " + node.getNodeid() + " " + "Node Title: " + node.getTitle());
+            //System.out.println("Node Title: " + node.getTitle());
         }
     }
 
