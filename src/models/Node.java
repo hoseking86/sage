@@ -26,17 +26,6 @@ public class Node extends LibraryResource {
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
 
-    public List<Node> getLinkedNodes() { return linkedNodes; }
-
-    // Simple bidirectional link
-    public void link(Node node) {
-        if (node == null || node == this) return;
-        if (!linkedNodes.contains(node)) {
-            linkedNodes.add(node);
-            node.link(this);  // link back
-        }
-    }
-
     @Override
     public String toString() {
         return "Node ID: " + nodeid +
