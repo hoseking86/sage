@@ -1,18 +1,70 @@
 import models.ResourceType;
 import service.NodeService;
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Application {
     public static void main(String[] args) {
         NodeService nodeService = new NodeService();
         Scanner scanner = new Scanner(System.in);
 
+        //Log in creation - https://medium.com/@edanurgurgen94/creating-user-login-with-java-3272197fe507 accessed 14/11/2025
+        HashMap<String, String> users = new HashMap<>();
+        users.put("jbloogs", "1234");
+        users.put("twoods", "1234");
+        System.out.println("=== LOGIN SYSTEM ===");
+
+        System.out.print("Your Username: ");
+        String userName = scanner.nextLine();
+
+        System.out.print("Your Password: ");
+        String password = scanner.nextLine();
+
+
+        // --- LOGIN CHECK ---
+        if (!users.containsKey(userName) || !users.get(userName).equals(password)) {
+
+            System.out.println("Login Failed! Do you want to reset your password?");
+            System.out.println("1 - Yes");
+            System.out.println("2 - No");
+
+            int answer = scanner.nextInt();
+            scanner.nextLine(); // clear buffer
+
+            if (answer == 1) {
+
+                System.out.print("Enter your new password: ");
+                String newPassword = scanner.nextLine();
+
+                if (newPassword.equals(users.get(userName))) {
+                    System.out.println("Do not use your previous password!");
+                    System.out.print("Enter a different password: ");
+                    newPassword = scanner.nextLine();
+                }
+
+                users.put(userName, newPassword);  // update stored password
+                System.out.println("Password updated! You are now logged in.");
+
+            } else {
+                System.out.println("Login Failed! Exiting...");
+                return;
+            }
+        } else {
+            System.out.println("Successfully logged in!");
+        }
+        System.out.println();
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println();
         // Preload some resources for testing
-        nodeService.addResource(ResourceType.NODE, "Node 1", "Computer", "A computer is what you use to carry out tasks");
-        nodeService.addResource(ResourceType.NODE, "Node 2", "Programming", "Programming is used to make things happen");
-        nodeService.addResource(ResourceType.NODE, "Node 3", "Databases", "Databases store the data for use at a later time");
+        System.out.println("Example knowledge node creations");
+        System.out.println();
+        nodeService.addResource(ResourceType.NODE, "AB 1", "Computer", "A computer is what you use to carry out tasks");
+        nodeService.addResource(ResourceType.NODE, "AB 2", "Programming", "Programming is used to make things happen");
+        nodeService.addResource(ResourceType.NODE, "CD 1", "Databases", "Databases store the data for use at a later time");
 
         boolean running = true;
+        System.out.println();
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
 
         while (running) {
             System.out.println("\nRESEARCHER MENU");
