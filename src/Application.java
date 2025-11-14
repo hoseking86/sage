@@ -1,62 +1,32 @@
 import models.ResourceType;
 import service.NodeService;
 import java.util.Scanner;
-import java.util.HashMap;
+import service.LoginService;
 
 public class Application {
     public static void main(String[] args) {
         NodeService nodeService = new NodeService();
         Scanner scanner = new Scanner(System.in);
 
-        //Log in creation - https://medium.com/@edanurgurgen94/creating-user-login-with-java-3272197fe507 accessed 14/11/2025
-        HashMap<String, String> users = new HashMap<>();
-        users.put("jbloogs", "1234");
-        users.put("twoods", "1234");
-        System.out.println("=== LOGIN SYSTEM ===");
+        LoginService loginService = new LoginService();
 
-        System.out.print("Your Username: ");
-        String userName = scanner.nextLine();
+        //This initiates the log in before anything else
+        boolean loggedIn = loginService.login(scanner);
 
-        System.out.print("Your Password: ");
-        String password = scanner.nextLine();
-
-
-        // --- LOGIN CHECK ---
-        if (!users.containsKey(userName) || !users.get(userName).equals(password)) {
-
-            System.out.println("Login Failed! Do you want to reset your password?");
-            System.out.println("1 - Yes");
-            System.out.println("2 - No");
-
-            int answer = scanner.nextInt();
-            scanner.nextLine(); // clear buffer
-
-            if (answer == 1) {
-
-                System.out.print("Enter your new password: ");
-                String newPassword = scanner.nextLine();
-
-                if (newPassword.equals(users.get(userName))) {
-                    System.out.println("Do not use your previous password!");
-                    System.out.print("Enter a different password: ");
-                    newPassword = scanner.nextLine();
-                }
-
-                users.put(userName, newPassword);  // update stored password
-                System.out.println("Password updated! You are now logged in.");
-
-            } else {
-                System.out.println("Login Failed! Exiting...");
-                return;
-            }
-        } else {
-            System.out.println("Successfully logged in!");
+        if (!loggedIn) {
+            System.out.println("Exiting program...");
+            return;
         }
+
+        // ---- AFTER LOGIN, CONTINUE YOUR NORMAL MENU ----
+
         System.out.println();
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+        //System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("********************************************************************************************************************************");
         System.out.println();
         // Preload some resources for testing
-        System.out.println("Example knowledge node creations");
+        System.out.println("                                           Example knowledge node creations");
+        System.out.println("                                      ----------------------------------------");
         System.out.println();
         nodeService.addResource(ResourceType.NODE, "AB 1", "Computer", "A computer is what you use to carry out tasks");
         nodeService.addResource(ResourceType.NODE, "AB 2", "Programming", "Programming is used to make things happen");
@@ -64,20 +34,25 @@ public class Application {
 
         boolean running = true;
         System.out.println();
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-
+        //System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("********************************************************************************************************************************");
         while (running) {
-            System.out.println("\nRESEARCHER MENU");
+            System.out.println("\n                                                   RESEARCHER MENU");
+            System.out.println("                                      ----------------------------------------");
+            System.out.println();
+            System.out.println("Please choose one of the following and once selection is made press ENTER:");
+            System.out.println();
             System.out.println("SELECT 1 Add a new Node");
             System.out.println("SELECT 2 Search for resources");
             System.out.println("SELECT 3 Show total number of resources");
             System.out.println("SELECT 4 To Edit a node");
+            System.out.println("SELECT 5 For user logout");
 
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-                    System.out.print("Enter Node ID in format of your initals followed by number: ");
+                    System.out.print("Enter Node ID in format of your initials followed by number: ");
                     String nodeid = scanner.nextLine();
 
                     System.out.print("Enter title for the Node: ");
@@ -107,11 +82,6 @@ public class Application {
                     nodeService.totalItems();
                     break;
 
-                default:
-                    System.out.println("Invalid option, please select 1-4.");
-
-                    break;
-
                 case "4":
                     nodeService.showAllResources(); // show existing nodes
                     System.out.print("Enter the Node ID to edit: ");
@@ -129,6 +99,15 @@ public class Application {
                     } else {
                         System.out.println("Node not found. Please check the ID and try again.");
                     }
+                    break;
+
+                case "5":
+                    System.out.println("Logging out...");
+                    running = false;  // this will exit the while loop
+                    break;
+
+                    default:
+                    System.out.println("This is not a valid option, please select 1-5.");
                     break;
             }
         }
