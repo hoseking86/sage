@@ -13,8 +13,8 @@ import java.util.Scanner;
         public LoginService() {
 
             //These are currently manually added
-            users.put("jbloogs", "1234");
-            users.put("twoods", "1234");
+            users.put("t@sage.com", "1234");
+            users.put("j@sage.com", "1234");
 
         }
 
@@ -26,7 +26,7 @@ import java.util.Scanner;
             System.out.println();
             System.out.print("Please enter the login details that have been given to you and press Enter");
             System.out.println();
-            System.out.print("Your Username: ");
+            System.out.print("Your Email Address: ");
             String userName = scanner.nextLine();
 
             System.out.print("Your Password: ");
