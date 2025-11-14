@@ -1,28 +1,47 @@
 package models;
 
-public class Node extends LibraryResource  {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Node extends LibraryResource {
+    public Node() {}
     private String nodeid;
+    private String title;
+    private String content;
+
+    private List<Node> linkedNodes = new ArrayList<>();
+
+    public Node(String nodeid, String title, String content) {
+        this.nodeid = nodeid;
+        this.title = title;
+        this.content = content;
+    }
+
     public String getNodeid() { return nodeid; }
     public void setNodeid(String nodeid) { this.nodeid = nodeid; }
 
-
-    private String title;
     public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title;}
+    public void setTitle(String title) { this.title = title; }
 
-    private String content;
     public String getContent() { return content; }
-    public void setContent(String mainContent) { this.content = mainContent; }
+    public void setContent(String content) { this.content = content; }
 
-    //added 13/11/2025 12:30 for the search
-    //This code replaces a method that has been inherited from a parent class and displays the true value
-    //https://www.geeksforgeeks.org/java/overriding-in-java/ accessed 13/11/2025
+    public List<Node> getLinkedNodes() { return linkedNodes; }
+
+    // Simple bidirectional link
+    public void link(Node node) {
+        if (node == null || node == this) return;
+        if (!linkedNodes.contains(node)) {
+            linkedNodes.add(node);
+            node.link(this);  // link back
+        }
+    }
+
     @Override
     public String toString() {
-        return "Node ID: " + nodeid
-                + "  Title: " + title
-                + "  Content: " + content;
-        //end of search function
+        return "Node ID: " + nodeid +
+                "  Title: " + title +
+                "  Content: " + content +
+                "  Linked Nodes: " + linkedNodes.size();
     }
 }
