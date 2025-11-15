@@ -1,5 +1,7 @@
 package service;
 
+import models.Researcher;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -8,21 +10,31 @@ import java.util.Scanner;
 
     public class LoginService {
 
-        private HashMap<String, String> users = new HashMap<>();
+        private HashMap<String, Researcher> users= new HashMap<>();
 
+        //LoginService constructor which will run when the service is created/initiated
         public LoginService() {
 
-            //These are currently manually added
-            users.put("tiger.woods@sage.com", "1234");
-            users.put("Tiger Woods", "1234");
-            users.put("tiger woods", "1234");
 
-            users.put("joe.bloogs@sage.com", "1234");
-            users.put("Joe Bloogs", "1234");
-            users.put("joe bloogs", "1234");
+            users = new HashMap<>();
+
+            //Tiger Woods
+            Researcher tiger = new Researcher("Tiger Woods", "tiger.woods@sage.com", "1234");
+            users.put(tiger.getEmail(), tiger);
+            users.put(tiger.getFullName(), tiger);
+            users.put(tiger.getFullName().toLowerCase(), tiger);
+
+            //Joe Bloogs
+            Researcher joe = new Researcher("Joe Bloogs", "joe.bloogs@sage.com", "1234");
+            users.put(joe.getEmail(), joe);
+            users.put(joe.getFullName(), joe);
+            users.put(joe.getFullName().toLowerCase(), joe);
 
             //test login
-            users.put("a", "a");
+            Researcher test = new Researcher("Test User", "a", "a");
+            users.put(test.getEmail(), test);
+            users.put(test.getFullName(), test);
+            users.put(test.getFullName().toLowerCase(), test);
         }
 
         public boolean login(Scanner scanner) {
@@ -41,7 +53,9 @@ import java.util.Scanner;
 
 
             // --- LOGIN CHECK ---
-            if (!users.containsKey(userName) || !users.get(userName).equals(password)) {
+
+            Researcher user = users.get(userName);
+            if  (user == null || !user.getPassword().equals(password)) {
 
                 System.out.println("Login Failed! Do you want to reset your password?");
                 System.out.println("1 - Yes");
@@ -55,13 +69,16 @@ import java.util.Scanner;
                     System.out.print("Enter your new password: ");
                     String newPassword = scanner.nextLine();
 
-                    if (newPassword.equals(users.get(userName))) {
+                    if (newPassword.equals(user != null ? user.getPassword() : "")) {
                         System.out.println("Do not use your previous password!");
                         System.out.print("Enter a different password: ");
                         newPassword = scanner.nextLine();
                     }
 
-                    users.put(userName, newPassword);  // update stored password
+                    if (user != null) {
+                        user.setPassword(newPassword);
+                    }
+
                     System.out.println("Your Password has been reset");
                     return true;
 
@@ -69,9 +86,10 @@ import java.util.Scanner;
                     System.out.println("Login Failed the program is now Exiting");
                     return false;
                 }
-            } else {
-                System.out.println("Successfully logged in!");
-                return true;
+            }
+
+            System.out.println("Successfully logged in!");
+            return true;
             }
         }
-    }
+

@@ -1,18 +1,18 @@
 package models;
 
 public class Researcher {
-    //private Integer id;
+
     private String fullName;
     private String email;
     private String password;
 
-    //public Integer getId() {
-    //return id;
-    //}
+    public Researcher () {}
 
-    //public void setId(Integer id) {
-    //this.id = id;
-    //}
+    public Researcher(String fullName, String email, String password) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getFullName() {
         return fullName;
