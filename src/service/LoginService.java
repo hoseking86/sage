@@ -2,17 +2,19 @@ package service;
 
 import models.Researcher;
 import java.util.HashMap;
-import java.util.Scanner;
+import java.util.Scanner; //This is used to read the input from the Researcher/User
 
 //Log in creation - https://medium.com/@edanurgurgen94/creating-user-login-with-java-3272197fe507 accessed 14/11/2025
 
     public class LoginService {
 
+        //https://www.w3schools.com/java/java_hashmap.asp accessed 12/11/2025
         private HashMap<String, Researcher> users= new HashMap<>();
 
         //LoginService constructor which will run when the service is created/initiated
         public LoginService() {
 
+            //These are example users that are added to the user map by the application as there is no Auth service or user creation set up
             users = new HashMap<>();
 
             //Tiger Woods
@@ -34,6 +36,7 @@ import java.util.Scanner;
             users.put(test.getFullName().toLowerCase(), test);
         }
 
+        //This is the log in stage of the program
         public boolean login(Scanner scanner) {
 
             System.out.println("********************************************************************************************************************************");
@@ -49,41 +52,14 @@ import java.util.Scanner;
             String password = scanner.nextLine();
 
 
-            // Login check carried out using this code
+            // Login check on the details provided handled by using this code
+            //The Researcher is checked against the hash map. If the details do not match the Researcher cant log in
             Researcher user = users.get(userName);
-            if  (user == null || !user.getPassword().equals(password)) {
+            if (user == null || !user.getPassword().equals(password)) {
+                System.out.println("Login Failed the program is now Exiting");
+                return false;
 
-                System.out.println("Login Failed! Do you want to reset your password?");
-                System.out.println("Select 1 = Yes");
-                System.out.println("Select 2 = No");
-
-                int answer = scanner.nextInt();
-                scanner.nextLine(); // clear buffer
-
-                if (answer == 1) {
-
-                    System.out.print("Enter your new password: ");
-                    String newPassword = scanner.nextLine();
-
-                    if (newPassword.equals(user != null ? user.getPassword() : "")) {
-                        System.out.println("Do not use your previous password!");
-                        System.out.print("Enter a different password: ");
-                        newPassword = scanner.nextLine();
-                    }
-
-                    if (user != null) {
-                        user.setPassword(newPassword);
-                    }
-
-                    System.out.println("Your Password has been reset");
-                    return true;
-
-                } else {
-                    System.out.println("Login Failed the program is now Exiting");
-                    return false;
-                }
             }
-
             System.out.println("Successfully logged in!");
             return true;
             }

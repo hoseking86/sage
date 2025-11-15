@@ -11,6 +11,7 @@ public class NodeService {
         this.store = new Store();
     }
 
+    //Store is a holding the library resources
     //Encapsulation - OOP
     public void addResource(ResourceType rType, String nodeId, String title, String content) {
         LibraryResource resource = null;
@@ -19,12 +20,10 @@ public class NodeService {
         }
         if (resource != null) {
             store.addResource(resource);
-        } else {
-            System.out.println("Unsupported resource type: " + rType);
         }
-        //store.addResource(resource);
     }
 
+    //This shows the Researcher how many nodes have been saved (including the example nodes)
     public void totalItems() {
         store.countResources();
     }
@@ -35,6 +34,17 @@ public class NodeService {
     }
     //end of addition - search
 
+    //Creation of a node using the set fields
+    private Node createNode(String nodeId, String title, String content) {
+        Node node = new Node();
+        node.setNodeid(nodeId);
+        node.setTitle(title);
+        node.setContent(content);
+
+        return node;
+    }
+
+    //This is the code to update a node
     public boolean updateResource(String nodeId, String newTitle, String newContent) {
         List<LibraryResource> resources = store.getAllResources();
 
@@ -45,17 +55,7 @@ public class NodeService {
                 return true; // Updated successfully
             }
         }
-
         return false; // Node not found
-    }
-
-    private Node createNode(String nodeId, String title, String content) {
-        Node node = new Node();
-        node.setNodeid(nodeId);
-        node.setTitle(title);
-        node.setContent(content);
-
-        return node;
     }
 
     //Linking nodes
@@ -85,10 +85,11 @@ public class NodeService {
         return true;
     }
 
+    //This shows all the resources
     public void showAllResources() {
         List<LibraryResource> resources = store.getAllResources();
 
-        if (resources.isEmpty()) {
+        if (resources.isEmpty()) { //https://www.w3schools.com/java/ref_string_isempty.asp accessed 13/11/2025
             System.out.println("No resources available.");
             return;
         }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+//Inheritance happening here
 public class Node extends LibraryResource {
 
     public Node() {}
@@ -11,7 +13,6 @@ public class Node extends LibraryResource {
     private String nodeid;
     private String title;
     private String content;
-
     private List<Node> linkedNodes = new ArrayList<>();
 
     public Node(String nodeid, String title, String content) {
@@ -20,6 +21,7 @@ public class Node extends LibraryResource {
         this.content = content;
     }
 
+    //These get and sets are methods used to read and update the nodes
     public String getNodeid() { return nodeid; }
     public void setNodeid(String nodeid) { this.nodeid = nodeid; }
 

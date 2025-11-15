@@ -7,6 +7,7 @@ public class Application {
     public static void main(String[] args) {
 
         //Classes - OOP
+        //These are initiated when the program first runs
         NodeService nodeService = new NodeService();
         Scanner scanner = new Scanner(System.in);
         LoginService loginService = new LoginService();
@@ -15,14 +16,15 @@ public class Application {
         //Encapsulation and Abstraction - OOP
         //Encapsulation - login process inside the LoginService class
         //Abstraction - uses login method
-        boolean loggedIn = loginService.login(scanner);
+        //Checking the details in loginService and returns true or false using thr boolean logic
+        boolean loggedIn = loginService.login(scanner); //https://www.w3schools.com/java/java_booleans.asp accessed 10/11/2025
 
         if (!loggedIn) {
             System.out.println("Exiting program...");
             return;
         }
 
-        //AFTER LOGIN, RESEARCHER WILL BE SHOWN MENU
+        //After login the Researcher will be presented with the menu with available options
 
         System.out.println();
         //System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
@@ -42,8 +44,7 @@ public class Application {
 
         boolean running = true;
         System.out.println();
-        //System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-        while (running) {
+        while (running) { //https://medium.com/@AlexanderObregon/creating-user-menus-in-java-with-loops-and-switch-040149bd9732 accessed 10/11/2025
             System.out.println("\n                                                   RESEARCHER MENU");
             System.out.println("                                      ----------------------------------------");
             System.out.println();

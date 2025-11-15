@@ -5,19 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Node;
 
+
 public class Store {
     private List<LibraryResource> resources = new ArrayList<>();
-
+    //The resource is storing the LibraryResource data
     public void addResource(LibraryResource resource) {
         resources.add(resource);
 
 
         if (resource instanceof Node node) {
             System.out.println("Added Node with ID: " + node.getNodeid() + " " + "Node Title: " + node.getTitle() + " " + "Node Content: " + node.getContent());
-            //System.out.println("Node Title: " + node.getTitle());
+
         }
     }
 
+        //Method to actively count the number of created/stored resources
+        //https://www.geeksforgeeks.org/java/count-occurrences-elements-list-java/ accessed 12/11/2025
     public void countResources() {
         System.out.println("Number of Resources Stored: " + resources.size());
     }
