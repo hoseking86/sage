@@ -15,6 +15,7 @@ import java.util.Scanner;
             //These are currently manually added
             users.put("t@sage.com", "1234");
             users.put("j@sage.com", "1234");
+            users.put("a", "a");
 
         }
 
@@ -24,7 +25,7 @@ import java.util.Scanner;
             System.out.println();
             System.out.println("++++ SAGE LOGIN ++++");
             System.out.println();
-            System.out.print("Please enter the login details that have been given to you and press Enter");
+            System.out.print("Enter the login details provided at registration and press Enter");
             System.out.println();
             System.out.print("Your Email Address: ");
             String userName = scanner.nextLine();

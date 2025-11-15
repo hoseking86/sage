@@ -31,11 +31,12 @@ public class Application {
         nodeService.addResource(ResourceType.NODE, "AB 1", "Computer", "A computer is what you use to carry out tasks");
         nodeService.addResource(ResourceType.NODE, "AB 2", "Programming", "Programming is used to make things happen");
         nodeService.addResource(ResourceType.NODE, "CD 1", "Databases", "Databases store the data for use at a later time");
+        nodeService.addResource(ResourceType.NODE, "AB 3", "Computer", "Computer hardware includes a keyboard and mouse");
+        nodeService.addResource(ResourceType.NODE, "CD 2", "Databases", "An example of a database management tool is MySQL");
 
         boolean running = true;
         System.out.println();
         //System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("********************************************************************************************************************************");
         while (running) {
             System.out.println("\n                                                   RESEARCHER MENU");
             System.out.println("                                      ----------------------------------------");
@@ -46,7 +47,8 @@ public class Application {
             System.out.println("SELECT 2 Search for resources");
             System.out.println("SELECT 3 Show total number of resources");
             System.out.println("SELECT 4 To Edit a node");
-            System.out.println("SELECT 5 For user logout");
+            System.out.println("SELECT 5 To create linked nodes");
+            System.out.println("SELECT 6 For user logout");
 
             String choice = scanner.nextLine();
 
@@ -101,7 +103,7 @@ public class Application {
                     }
                     break;
 
-                case "5":
+                case "6":
                     System.out.println("Logging out...");
                     running = false;  // this will exit the while loop
                     break;
