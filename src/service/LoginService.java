@@ -13,10 +13,16 @@ import java.util.Scanner;
         public LoginService() {
 
             //These are currently manually added
-            users.put("t@sage.com", "1234");
-            users.put("j@sage.com", "1234");
-            users.put("a", "a");
+            users.put("tiger.woods@sage.com", "1234");
+            users.put("Tiger Woods", "1234");
+            users.put("tiger woods", "1234");
 
+            users.put("joe.bloogs@sage.com", "1234");
+            users.put("Joe Bloogs", "1234");
+            users.put("joe bloogs", "1234");
+
+            //test login
+            users.put("a", "a");
         }
 
         public boolean login(Scanner scanner) {
@@ -27,7 +33,7 @@ import java.util.Scanner;
             System.out.println();
             System.out.print("Enter the login details provided at registration and press Enter");
             System.out.println();
-            System.out.print("Your Email Address: ");
+            System.out.print("Your Email Address or Full Name: ");
             String userName = scanner.nextLine();
 
             System.out.print("Your Password: ");
