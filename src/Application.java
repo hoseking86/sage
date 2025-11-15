@@ -28,11 +28,11 @@ public class Application {
         System.out.println("                                           Example knowledge node creations");
         System.out.println("                                      ----------------------------------------");
         System.out.println();
-        nodeService.addResource(ResourceType.NODE, "AB 1", "Computer", "A computer is what you use to carry out tasks");
-        nodeService.addResource(ResourceType.NODE, "AB 2", "Programming", "Programming is used to make things happen");
-        nodeService.addResource(ResourceType.NODE, "CD 1", "Databases", "Databases store the data for use at a later time");
-        nodeService.addResource(ResourceType.NODE, "AB 3", "Computer", "Computer hardware includes a keyboard and mouse");
-        nodeService.addResource(ResourceType.NODE, "CD 2", "Databases", "An example of a database management tool is MySQL");
+        nodeService.addResource(ResourceType.NODE, "AB1", "Computer", "A computer is what you use to carry out tasks");
+        nodeService.addResource(ResourceType.NODE, "AB2", "Programming", "Programming is used to make things happen");
+        nodeService.addResource(ResourceType.NODE, "CD1", "Databases", "Databases store the data for use at a later time");
+        nodeService.addResource(ResourceType.NODE, "AB3", "Computer", "Computer hardware includes a keyboard and mouse");
+        nodeService.addResource(ResourceType.NODE, "CD2", "Databases", "An example of a database management tool is MySQL");
 
         boolean running = true;
         System.out.println();
@@ -52,9 +52,10 @@ public class Application {
 
             String choice = scanner.nextLine();
 
+            //These are needed when setting up selectable menu items
             switch (choice) {
                 case "1":
-                    System.out.print("Enter Node ID in format of your initials followed by number: ");
+                    System.out.print("Enter Node ID in format of your initials followed by number EG TW01 (no spaces!) : ");
                     String nodeid = scanner.nextLine();
 
                     System.out.print("Enter title for the Node: ");
@@ -100,6 +101,23 @@ public class Application {
                         System.out.println("Node updated successfully!");
                     } else {
                         System.out.println("Node not found. Please check the ID and try again.");
+                    }
+                    break;
+
+
+                case "5":
+                    nodeService.showAllResources();
+
+                    System.out.print("Enter first Node ID: ");
+                    String n1 = scanner.nextLine();
+
+                    System.out.print("Enter second Node ID: ");
+                    String n2 = scanner.nextLine();
+
+                    if (nodeService.linkNodes(n1, n2)) {
+                        System.out.println("Nodes linked successfully!");
+                    } else {
+                        System.out.println("One or both IDs were not found.");
                     }
                     break;
 

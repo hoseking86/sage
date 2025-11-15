@@ -59,6 +59,33 @@ public class NodeService {
         return node;
     }
 
+    //Linking nodes
+    public boolean linkNodes(String id1, String id2) {
+        List<LibraryResource> resources = store.getAllResources();
+
+        Node node1 = null;
+        Node node2 = null;
+
+        // find nodes
+        for (LibraryResource res : resources) {
+            if (res instanceof Node node) {
+                if (node.getNodeid().equalsIgnoreCase(id1)) node1 = node;
+                if (node.getNodeid().equalsIgnoreCase(id2)) node2 = node;
+            }
+        }
+
+        // not found?
+        if (node1 == null || node2 == null) {
+            return false;
+        }
+
+        // link both ways
+        node1.addLink(node2);
+        node2.addLink(node1);
+
+        return true;
+    }
+
     public void showAllResources() {
         List<LibraryResource> resources = store.getAllResources();
 
@@ -66,6 +93,10 @@ public class NodeService {
             System.out.println("No resources available.");
             return;
         }
+
+
+
+
 
         System.out.println("\n=== ALL RESOURCES ===");
         for (LibraryResource resource : resources) {
