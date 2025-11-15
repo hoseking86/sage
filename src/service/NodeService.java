@@ -11,6 +11,7 @@ public class NodeService {
         this.store = new Store();
     }
 
+    //Encapsulation - OOP
     public void addResource(ResourceType rType, String nodeId, String title, String content) {
         LibraryResource resource = null;
         if (rType == ResourceType.NODE) {

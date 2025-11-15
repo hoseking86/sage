@@ -5,12 +5,16 @@ import service.LoginService;
 
 public class Application {
     public static void main(String[] args) {
+
+        //Classes - OOP
         NodeService nodeService = new NodeService();
         Scanner scanner = new Scanner(System.in);
-
         LoginService loginService = new LoginService();
 
         //This initiates the log in before anything else
+        //Encapsulation and Abstraction - OOP
+        //Encapsulation - login process inside the LoginService class
+        //Abstraction - uses login method
         boolean loggedIn = loginService.login(scanner);
 
         if (!loggedIn) {
@@ -18,7 +22,7 @@ public class Application {
             return;
         }
 
-        // ---- AFTER LOGIN, CONTINUE YOUR NORMAL MENU ----
+        //AFTER LOGIN, RESEARCHER WILL BE SHOWN MENU
 
         System.out.println();
         //System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
@@ -28,6 +32,8 @@ public class Application {
         System.out.println("                                           Example knowledge node creations");
         System.out.println("                                      ----------------------------------------");
         System.out.println();
+
+        //Encapsulation and Abstraction - OOP
         nodeService.addResource(ResourceType.NODE, "AB1", "Computer", "A computer is what you use to carry out tasks");
         nodeService.addResource(ResourceType.NODE, "AB2", "Programming", "Programming is used to make things happen");
         nodeService.addResource(ResourceType.NODE, "CD1", "Databases", "Databases store the data for use at a later time");
@@ -114,6 +120,7 @@ public class Application {
                     System.out.print("Enter second Node ID: ");
                     String n2 = scanner.nextLine();
 
+                    //Abstraction - OOP
                     if (nodeService.linkNodes(n1, n2)) {
                         System.out.println("Nodes linked successfully!");
                     } else {
