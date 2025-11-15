@@ -41,9 +41,12 @@ import java.util.Scanner; //This is used to read the input from the Researcher/U
 
             System.out.println("********************************************************************************************************************************");
             System.out.println();
-            System.out.println("++++ SAGE LOGIN ++++");
+            System.out.println("++++ WELCOME TO THE SAGE LOGIN ++++");
             System.out.println();
-            System.out.print("Enter the login details provided at registration and press Enter");
+            System.out.println("++++ Sage is your very own personal knowledge management (PKM) platform which can be used to create and link knowledge nodes ++++");
+            System.out.println();
+            System.out.print("To Access the platform enter your login details provided to you at registration and hit the ENTER key");
+            System.out.println();
             System.out.println();
             System.out.print("Your Email Address or Full Name: ");
             String userName = scanner.nextLine();
