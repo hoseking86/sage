@@ -6,8 +6,6 @@ public class Researcher {
     private String email;
     private String password;
 
-    public Researcher () {}
-
     public Researcher(String fullName, String email, String password) {
         this.fullName = fullName;
         this.email = email;

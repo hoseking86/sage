@@ -25,8 +25,6 @@ public class NodeService {
         //store.addResource(resource);
     }
 
-
-
     public void totalItems() {
         store.countResources();
     }
@@ -94,10 +92,6 @@ public class NodeService {
             System.out.println("No resources available.");
             return;
         }
-
-
-
-
 
         System.out.println("\n=== ALL RESOURCES ===");
         for (LibraryResource resource : resources) {

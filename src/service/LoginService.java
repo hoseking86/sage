@@ -1,10 +1,8 @@
 package service;
 
 import models.Researcher;
-
 import java.util.HashMap;
 import java.util.Scanner;
-
 
 //Log in creation - https://medium.com/@edanurgurgen94/creating-user-login-with-java-3272197fe507 accessed 14/11/2025
 
@@ -14,7 +12,6 @@ import java.util.Scanner;
 
         //LoginService constructor which will run when the service is created/initiated
         public LoginService() {
-
 
             users = new HashMap<>();
 
@@ -52,14 +49,13 @@ import java.util.Scanner;
             String password = scanner.nextLine();
 
 
-            // --- LOGIN CHECK ---
-
+            // Login check carried out using this code
             Researcher user = users.get(userName);
             if  (user == null || !user.getPassword().equals(password)) {
 
                 System.out.println("Login Failed! Do you want to reset your password?");
-                System.out.println("1 - Yes");
-                System.out.println("2 - No");
+                System.out.println("Select 1 = Yes");
+                System.out.println("Select 2 = No");
 
                 int answer = scanner.nextInt();
                 scanner.nextLine(); // clear buffer

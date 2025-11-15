@@ -35,13 +35,12 @@ public class Node extends LibraryResource {
         return linkedNodes;
     }
 
-    //This is the actual method for adding a linked node
+    //This is the method for adding a linked node
     public void addLink(Node node) {
         if (!linkedNodes.contains(node)) {
             linkedNodes.add(node);
         }
     }
-
 
     @Override
     public String toString() {
