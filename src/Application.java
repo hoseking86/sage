@@ -48,7 +48,7 @@ public class Application {
             System.out.println("\n                                                   RESEARCHER MENU");
             System.out.println("                                      ----------------------------------------");
             System.out.println();
-            System.out.println("Please choose one of the following and once selection is made press ENTER:");
+            System.out.println("Please choose one of the following and press ENTER:");
             System.out.println();
             System.out.println("SELECT 1 Add a new Node");
             System.out.println("SELECT 2 Search for resources");
