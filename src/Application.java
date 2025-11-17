@@ -87,7 +87,7 @@ public class Application {
 
                 String choice = scanner.nextLine();
 
-                //These are needed when setting up selectable menu items
+                //These are needed when setting up selectable menu items ####TEST####
                 switch (choice) {
                     case "1":
                         System.out.print("Enter Node ID in format of your initials followed by number EG TW01 (no spaces!) : ");
