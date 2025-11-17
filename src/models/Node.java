@@ -15,11 +15,30 @@ public class Node extends LibraryResource {
     private String content;
     private List<Node> linkedNodes = new ArrayList<>();
 
+    //Observer Design Pattern - Linked node visual update
+    private List<NodeObservers> observers = new ArrayList<>();
+    //End of addition of DP
+
     public Node(String nodeid, String title, String content) {
         this.nodeid = nodeid;
         this.title = title;
         this.content = content;
     }
+    //Observer Design Pattern - Linked node visual update
+    public void addObserver(NodeObservers observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(NodeObservers observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers() {
+        for (NodeObservers observer : observers) {
+            observer.onNodeUpdated(this);
+        }
+    }
+    //End of addition of DP
 
     //These get and sets are methods used to read and update the nodes
     public String getNodeid() { return nodeid; }
@@ -37,13 +56,24 @@ public class Node extends LibraryResource {
         return linkedNodes;
     }
 
+    //Observer Design Pattern - Linked node visual update
+    //public void addLink(Node node) {
+        //if (!linkedNodes.contains(node)) {
+            //linkedNodes.add(node);
+            //notifyObservers();   // 🔔 Notify when links change
+       // }
+   //}
+
     //This is the method for adding a linked node
     public void addLink(Node node) {
         if (!linkedNodes.contains(node)) {
             linkedNodes.add(node);
+            notifyObservers(); //Line added for Observer Design Pattern - Linked node visual update
         }
     }
+    //End of addition of DP
 
+    //This code is overriding the string
     @Override
     public String toString() {
         String linkedIds;

@@ -3,6 +3,7 @@ package service;
 import models.*;
 import repository.Store;
 import java.util.List;
+import java.util.ArrayList;
 
 public class NodeService {
     private final Store store;
@@ -22,6 +23,32 @@ public class NodeService {
             store.addResource(resource);
         }
     }
+
+    //Used for Observer addition
+    public List<Node> getAllNodes() {
+        List<LibraryResource> resources = store.getAllResources();
+        List<Node> nodes = new ArrayList<>();
+
+        for (LibraryResource res : resources) {
+            if (res instanceof Node node) {
+                nodes.add(node);
+            }
+        }
+
+        return nodes;
+    } //End of addition
+
+    //Needed for Observer Pattern
+    public Node getNodeById(String nodeId) {
+        List<LibraryResource> resources = store.getAllResources();
+        for (LibraryResource resource : resources) {
+            if (resource instanceof Node node && node.getNodeid().equalsIgnoreCase(nodeId)) {
+                return node;
+            }
+        }
+        return null; // Node not found
+    }
+    //End of addition
 
     //This shows the Researcher how many nodes have been saved (including the example nodes)
     public void totalItems() {

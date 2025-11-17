@@ -2,6 +2,9 @@ import models.ResourceType;
 import service.NodeService;
 import java.util.Scanner;
 import service.LoginService;
+import models.Node;
+import java.util.List;
+import models.NodeVisualizer;//May take out?
 
 public class Application {
     public static void main(String[] args) {
@@ -27,7 +30,6 @@ public class Application {
         //After login the Researcher will be presented with the menu with available options
 
         System.out.println();
-        //System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("********************************************************************************************************************************");
         System.out.println();
         // Preload some resources for testing
@@ -42,102 +44,139 @@ public class Application {
         nodeService.addResource(ResourceType.NODE, "AB3", "Computer", "Computer hardware includes a keyboard and mouse");
         nodeService.addResource(ResourceType.NODE, "CD2", "Databases", "An example of a database management tool is MySQL");
 
+        // Create visualizer and attach to all existing nodes
+        NodeVisualizer visualizer = new NodeVisualizer();
+        for (Node node : nodeService.getAllNodes()) {
+            node.addObserver(visualizer);
+        }
+
         boolean running = true;
-        System.out.println();
-        while (running) { //https://medium.com/@AlexanderObregon/creating-user-menus-in-java-with-loops-and-switch-040149bd9732 accessed 10/11/2025
-            System.out.println("\n                                                   RESEARCHER MENU");
-            System.out.println("                                      ----------------------------------------");
+        while (running) {
+
+
+
             System.out.println();
-            System.out.println("Please choose one of the following and press ENTER:");
-            System.out.println();
-            System.out.println("SELECT 1 Add a new Node");
-            System.out.println("SELECT 2 Search for resources");
-            System.out.println("SELECT 3 Show total number of resources");
-            System.out.println("SELECT 4 To Edit a node");
-            System.out.println("SELECT 5 To create linked nodes");
-            System.out.println("SELECT 6 For user logout");
+            //https://medium.com/@AlexanderObregon/creating-user-menus-in-java-with-loops-and-switch-040149bd9732 accessed 10/11/2025
+                System.out.println("\n                                                   RESEARCHER MENU");
+                System.out.println("                                      ----------------------------------------");
 
-            String choice = scanner.nextLine();
+            // Added for the Observer to update Linked Nodes Display current linked nodes dynamically
+            System.out.println("                                 Current linked nodes:");
+            List<Node> allNodes = nodeService.getAllNodes();
+            if (allNodes.isEmpty()) {
+                System.out.println("                                    none");
+            } else {
+                for (Node node : allNodes) {
+                    visualizer.onNodeUpdated(node); // Trigger visualizer output
+                }
+            }
+            //Observer update addition end here
+                System.out.println();
+                //System.out.println("                                 Current linked nodes: ");
+                System.out.println();
+                System.out.println("Please choose one of the following and press ENTER:");
+                System.out.println();
+                System.out.println("SELECT 1 Add a new Node");
+                System.out.println("SELECT 2 Search for resources");
+                System.out.println("SELECT 3 Show total number of resources");
+                System.out.println("SELECT 4 To Edit a node");
+                System.out.println("SELECT 5 To create linked nodes");
+                System.out.println("SELECT 6 For user logout");
+                //System.out.println();
+                //System.out.println();
+                //System.out.println("Current linked nodes: **Show linked nodes here**");
 
-            //These are needed when setting up selectable menu items
-            switch (choice) {
-                case "1":
-                    System.out.print("Enter Node ID in format of your initials followed by number EG TW01 (no spaces!) : ");
-                    String nodeid = scanner.nextLine();
+                String choice = scanner.nextLine();
 
-                    System.out.print("Enter title for the Node: ");
-                    String title = scanner.nextLine();
+                //These are needed when setting up selectable menu items
+                switch (choice) {
+                    case "1":
+                        System.out.print("Enter Node ID in format of your initials followed by number EG TW01 (no spaces!) : ");
+                        String nodeid = scanner.nextLine();
 
-                    System.out.print("Enter the content for the Node: ");
-                    String content = scanner.nextLine();
+                        System.out.print("Enter title for the Node: ");
+                        String title = scanner.nextLine();
 
-                    nodeService.addResource(ResourceType.NODE, nodeid, title, content);
-                    System.out.println("Node has been added");
-                    break;
+                        System.out.print("Enter the content for the Node: ");
+                        String content = scanner.nextLine();
 
-                case "2":
-                    System.out.print("Enter search term: ");
-                    String term = scanner.nextLine();
-                    var results = nodeService.searchResources(term);
+                        nodeService.addResource(ResourceType.NODE, nodeid, title, content);
+                        System.out.println("Node has been added");
+                        break;
 
-                    if (results.isEmpty()) {
-                        System.out.println("Nothing stored please carry out a new search.");
-                    } else {
-                        System.out.println("\nSEARCH RESULTS:");
-                        results.forEach(System.out::println);
-                    }
-                    break;
+                    case "2":
+                        System.out.print("Enter search term: ");
+                        String term = scanner.nextLine();
+                        var results = nodeService.searchResources(term);
 
-                case "3":
-                    nodeService.totalItems();
-                    break;
+                        if (results.isEmpty()) {
+                            System.out.println("Nothing stored please carry out a new search.");
+                        } else {
+                            System.out.println("\nSEARCH RESULTS:");
+                            results.forEach(System.out::println);
+                        }
+                        break;
 
-                case "4":
-                    nodeService.showAllResources(); // show existing nodes
-                    System.out.print("Enter the Node ID to edit: ");
-                    String editId = scanner.nextLine();
+                    case "3":
+                        nodeService.totalItems();
+                        break;
 
-                    System.out.print("Enter new title (leave blank to keep current): ");
-                    String newTitle = scanner.nextLine();
+                    case "4":
+                        nodeService.showAllResources(); // show existing nodes
+                        System.out.print("Enter the Node ID to edit: ");
+                        String editId = scanner.nextLine();
 
-                    System.out.print("Enter new content (leave blank to keep current): ");
-                    String newContent = scanner.nextLine();
+                        System.out.print("Enter new title (leave blank to keep current): ");
+                        String newTitle = scanner.nextLine();
 
-                    boolean updated = nodeService.updateResource(editId, newTitle, newContent);
-                    if (updated) {
-                        System.out.println("Node updated successfully!");
-                    } else {
-                        System.out.println("Node not found. Please check the ID and try again.");
-                    }
-                    break;
+                        System.out.print("Enter new content (leave blank to keep current): ");
+                        String newContent = scanner.nextLine();
+
+                        boolean updated = nodeService.updateResource(editId, newTitle, newContent);
+                        if (updated) {
+                            System.out.println("Node updated successfully!");
+                        } else {
+                            System.out.println("Node not found. Please check the ID and try again.");
+                        }
+                        break;
 
 
-                case "5":
-                    nodeService.showAllResources();
+                    case "5":
+                        nodeService.showAllResources();
+                        System.out.print("Enter first Node ID: ");
+                        String n1 = scanner.nextLine();
 
-                    System.out.print("Enter first Node ID: ");
-                    String n1 = scanner.nextLine();
+                        System.out.print("Enter second Node ID: ");
+                        String n2 = scanner.nextLine();
 
-                    System.out.print("Enter second Node ID: ");
-                    String n2 = scanner.nextLine();
+                        if (nodeService.linkNodes(n1, n2)) {
+                            System.out.println("Nodes linked successfully!");
 
-                    //Abstraction - OOP
-                    if (nodeService.linkNodes(n1, n2)) {
-                        System.out.println("Nodes linked successfully!");
-                    } else {
-                        System.out.println("One or both IDs were not found.");
-                    }
-                    break;
+                            // Attach visualizer to linked nodes if not already attached
+                            Node nodeA = nodeService.getNodeById(n1);
+                            Node nodeB = nodeService.getNodeById(n2);
 
-                case "6":
-                    System.out.println("Logging out...");
-                    running = false;  // this will exit the while loop
-                    break;
+                            if (nodeA != null) nodeA.addObserver(visualizer);
+                            if (nodeB != null) nodeB.addObserver(visualizer);
+
+                            // Trigger visualization manually
+                            if (nodeA != null) visualizer.onNodeUpdated(nodeA);
+                            if (nodeB != null) visualizer.onNodeUpdated(nodeB);
+
+                        } else {
+                            System.out.println("One or both IDs were not found.");
+                        }
+                        break;
+
+                    case "6":
+                        System.out.println("Logging out...");
+                        running = false;  // this will exit the while loop
+                        break;
 
                     default:
-                    System.out.println("This is not a valid option, please select 1-5.");
-                    break;
+                        System.out.println("This is not a valid option, please select 1-5.");
+                        break;
+                }
             }
         }
     }
-}
