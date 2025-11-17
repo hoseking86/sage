@@ -2,6 +2,7 @@ package models;
 
 public class NodeVisualiser implements NodeObservers {
 
+    //This is creating the visualisation for the linked node list - https://www.baeldung.com/java-observer-pattern?utm_source=chatgpt.com Accessed 16/11/2025
     @Override
     public void onNodeUpdated(Node node) {
         System.out.print("Node " + node.getNodeid() + " linked to: ");

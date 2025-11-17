@@ -100,19 +100,19 @@ public class NodeService {
             }
         }
 
-        // not found?
+
         if (node1 == null || node2 == null) {
             return false;
         }
 
-        // link both ways
+        // This creates/shows link which goes both ways
         node1.addLink(node2);
         node2.addLink(node1);
 
         return true;
     }
 
-    //This shows all the resources
+    //This shows all the resources in the list
     public void showAllResources() {
         List<LibraryResource> resources = store.getAllResources();
 

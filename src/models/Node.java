@@ -16,29 +16,35 @@ public class Node extends LibraryResource {
     private List<Node> linkedNodes = new ArrayList<>();
 
     //Observer Design Pattern - Linked node visual update
-    private List<NodeObservers> observers = new ArrayList<>();
-    //End of addition of DP
 
-    public Node(String nodeid, String title, String content) {
-        this.nodeid = nodeid;
-        this.title = title;
-        this.content = content;
-    }
-    //Observer Design Pattern - Linked node visual update
+    //Creating a list of Observers
+    //Obs run when the NodeObserver needs to update when a node changes
+    private List<NodeObservers> observers = new ArrayList<>();
+
+    //Observer Design Pattern - Linked node visual update - https://www.tutorialspoint.com/java/util/observable_addobserver.htm Accessed 17/11/2025
+    //This code will allow an observer to be added or taken away from a public/external object.
     public void addObserver(NodeObservers observer) {
         observers.add(observer);
     }
-
     public void removeObserver(NodeObservers observer) {
         observers.remove(observer);
     }
 
+    //This loops through observers calling on the onNodeUpdated method/class
     private void notifyObservers() {
         for (NodeObservers observer : observers) {
             observer.onNodeUpdated(this);
         }
     }
-    //End of addition of DP
+    //End of addition of Design Pattern
+
+
+    //Constructor which sets/initialises the Object in this case Node with the relevant fields
+    public Node(String nodeid, String title, String content) {
+        this.nodeid = nodeid;
+        this.title = title;
+        this.content = content;
+    }
 
     //These get and sets are methods used to read and update the nodes
     public String getNodeid() { return nodeid; }
@@ -56,22 +62,14 @@ public class Node extends LibraryResource {
         return linkedNodes;
     }
 
-    //Observer Design Pattern - Linked node visual update
-    //public void addLink(Node node) {
-        //if (!linkedNodes.contains(node)) {
-            //linkedNodes.add(node);
-            //notifyObservers();   // 🔔 Notify when links change
-       // }
-   //}
-
     //This is the method for adding a linked node
     public void addLink(Node node) {
         if (!linkedNodes.contains(node)) {
             linkedNodes.add(node);
-            notifyObservers(); //Line added for Observer Design Pattern - Linked node visual update
+            notifyObservers(); //This line added for Observer Design Pattern - Linked node visual update
         }
     }
-    //End of addition of DP
+
 
     //This code is overriding the string
     @Override

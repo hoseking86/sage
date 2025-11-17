@@ -71,6 +71,7 @@ public class Application {
                 }
             }
             //Observer update addition end here
+
                 System.out.println();
                 //System.out.println("                                 Current linked nodes: ");
                 System.out.println();
@@ -82,9 +83,7 @@ public class Application {
                 System.out.println("SELECT 4 To Edit a node");
                 System.out.println("SELECT 5 To create linked nodes");
                 System.out.println("SELECT 6 For user logout");
-                //System.out.println();
-                //System.out.println();
-                //System.out.println("Current linked nodes: **Show linked nodes here**");
+
 
                 String choice = scanner.nextLine();
 
@@ -152,14 +151,14 @@ public class Application {
                         if (nodeService.linkNodes(n1, n2)) {
                             System.out.println("Nodes linked successfully!");
 
-                            // Attach visualiser to linked nodes if not already attached
+                            // This code is attaching visualiser to linked nodes if they are not already attached
                             Node nodeA = nodeService.getNodeById(n1);
                             Node nodeB = nodeService.getNodeById(n2);
 
                             if (nodeA != null) nodeA.addObserver(visualiser);
                             if (nodeB != null) nodeB.addObserver(visualiser);
 
-                            // Trigger visualization manually
+                            // This trigger the visualisation manually
                             if (nodeA != null) visualiser.onNodeUpdated(nodeA);
                             if (nodeB != null) visualiser.onNodeUpdated(nodeB);
 
