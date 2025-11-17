@@ -1,6 +1,6 @@
 package models;
 
-public class NodeVisualizer implements NodeObservers {
+public class NodeVisualiser implements NodeObservers {
 
     @Override
     public void onNodeUpdated(Node node) {

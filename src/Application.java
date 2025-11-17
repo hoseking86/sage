@@ -4,7 +4,7 @@ import java.util.Scanner;
 import service.LoginService;
 import models.Node;
 import java.util.List;
-import models.NodeVisualizer;//May take out?
+import models.NodeVisualiser;//May take out?
 
 public class Application {
     public static void main(String[] args) {
@@ -45,7 +45,7 @@ public class Application {
         nodeService.addResource(ResourceType.NODE, "CD2", "Databases", "An example of a database management tool is MySQL");
 
         // Create visualizer and attach to all existing nodes
-        NodeVisualizer visualizer = new NodeVisualizer();
+        NodeVisualiser visualizer = new NodeVisualiser();
         for (Node node : nodeService.getAllNodes()) {
             node.addObserver(visualizer);
         }
