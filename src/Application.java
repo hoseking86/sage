@@ -44,10 +44,10 @@ public class Application {
         nodeService.addResource(ResourceType.NODE, "AB3", "Computer", "Computer hardware includes a keyboard and mouse");
         nodeService.addResource(ResourceType.NODE, "CD2", "Databases", "An example of a database management tool is MySQL");
 
-        // Create visualizer and attach to all existing nodes
-        NodeVisualiser visualizer = new NodeVisualiser();
+        // Create visualiser and attach to all existing nodes
+        NodeVisualiser visualiser = new NodeVisualiser();
         for (Node node : nodeService.getAllNodes()) {
-            node.addObserver(visualizer);
+            node.addObserver(visualiser);
         }
 
         boolean running = true;
@@ -67,7 +67,7 @@ public class Application {
                 System.out.println("                                    none");
             } else {
                 for (Node node : allNodes) {
-                    visualizer.onNodeUpdated(node); // Trigger visualizer output
+                    visualiser.onNodeUpdated(node); // Trigger visualiser output
                 }
             }
             //Observer update addition end here
@@ -152,16 +152,16 @@ public class Application {
                         if (nodeService.linkNodes(n1, n2)) {
                             System.out.println("Nodes linked successfully!");
 
-                            // Attach visualizer to linked nodes if not already attached
+                            // Attach visualiser to linked nodes if not already attached
                             Node nodeA = nodeService.getNodeById(n1);
                             Node nodeB = nodeService.getNodeById(n2);
 
-                            if (nodeA != null) nodeA.addObserver(visualizer);
-                            if (nodeB != null) nodeB.addObserver(visualizer);
+                            if (nodeA != null) nodeA.addObserver(visualiser);
+                            if (nodeB != null) nodeB.addObserver(visualiser);
 
                             // Trigger visualization manually
-                            if (nodeA != null) visualizer.onNodeUpdated(nodeA);
-                            if (nodeB != null) visualizer.onNodeUpdated(nodeB);
+                            if (nodeA != null) visualiser.onNodeUpdated(nodeA);
+                            if (nodeB != null) visualiser.onNodeUpdated(nodeB);
 
                         } else {
                             System.out.println("One or both IDs were not found.");
