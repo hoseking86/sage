@@ -8,7 +8,7 @@ import java.util.Scanner; //This is used to read the input from the Researcher/U
 
     public class LoginService {
 
-        //https://www.w3schools.com/java/java_hashmap.asp accessed 12/11/2025
+        //https://www.w3schools.com/java/java_hashmap.asp accessed 12/11/2025.
         private final HashMap<String, Researcher> users= new HashMap<>();
 
         //LoginService constructor which will run when the service is created/initiated
