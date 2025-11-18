@@ -75,14 +75,14 @@ public class Application {
                 System.out.println();
                 //System.out.println("                                 Current linked nodes: ");
                 System.out.println();
-                System.out.println("Please choose one of the following and press ENTER:");
+                System.out.println("Please select one of the following options using the numbers of the keyboard and press ENTER:");
                 System.out.println();
-                System.out.println("SELECT 1 Add a new Node");
-                System.out.println("SELECT 2 Search for resources");
-                System.out.println("SELECT 3 Show total number of resources");
-                System.out.println("SELECT 4 To Edit a node");
-                System.out.println("SELECT 5 To create linked nodes");
-                System.out.println("SELECT 6 For user logout");
+                System.out.println("SELECT 1 - Create and add Knowledge Nodes");
+                System.out.println("SELECT 2 - Function to search and view Knowledge Nodes using Node content, title or ID");
+                System.out.println("SELECT 3 - Show total number of Knowledge Nodes");
+                System.out.println("SELECT 4 - Edit a Knowledge Node");
+                System.out.println("SELECT 5 - Create and manage links between Knowledge Nodes");
+                System.out.println("SELECT 6 - Logout of Sage");
 
 
                 String choice = scanner.nextLine();
@@ -104,7 +104,7 @@ public class Application {
                         break;
 
                     case "2":
-                        System.out.print("Enter search term: ");
+                        System.out.print("Enter Node search term E.G. content, title or ID: ");
                         String term = scanner.nextLine();
                         var results = nodeService.searchResources(term);
 
@@ -173,7 +173,7 @@ public class Application {
                         break;
 
                     default:
-                        System.out.println("This is not a valid option, please select 1-5.");
+                        System.out.println("This is not a valid option, please select 1-6.");
                         break;
                 }
             }
