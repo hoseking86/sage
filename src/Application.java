@@ -60,7 +60,7 @@ public class Application {
                 System.out.println("\n                                                   RESEARCHER MENU");
                 System.out.println("                                      ----------------------------------------");
 
-            // Added for the Observer to update Linked Nodes Display current linked nodes dynamically
+            // Added for the Observer to update Linked Nodes Display current linked nodes dynamically.
             System.out.println("                                 Current linked nodes:");
             List<Node> allNodes = nodeService.getAllNodes();
             if (allNodes.isEmpty()) {
