@@ -90,7 +90,7 @@ public class Application {
                 //These are needed when setting up selectable menu items ####TEST TO DELETE TESTING THE COPYING OF COMMENTS####
                 switch (choice) {
                     case "1":
-                        System.out.print("Enter Node ID in format of your initials followed by number EG TW01 (no spaces!) : ");
+                        System.out.print("Enter Node ID in format of your initials followed by number EG TW1 (no spaces!) : ");
                         String nodeid = scanner.nextLine();
 
                         System.out.print("Enter title for the Node: ");
