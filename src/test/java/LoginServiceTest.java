@@ -7,6 +7,8 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
+
+//Testing LoginService Class in main > java > service
 public class LoginServiceTest {
 
     // Helper method to simulate user input for Scanner
