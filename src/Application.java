@@ -75,7 +75,7 @@ public class Application {
                 System.out.println();
                 //System.out.println("                                 Current linked nodes: ");
                 System.out.println();
-                System.out.println("Please select one of the following options using the numbers of the keyboard and press ENTER:");
+                System.out.println("Please select one of the following options using the numbers on the keyboard and press ENTER:");
                 System.out.println();
                 System.out.println("SELECT 1 - Create and add Knowledge Nodes");
                 System.out.println("SELECT 2 - Function to search and view Knowledge Nodes using Node content, title or ID");
