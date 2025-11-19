@@ -1,50 +1,54 @@
 import models.Node;
+
+//Import of standard Java classes
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ButtonsTest {
 
+    //TEST 1 - Test Working
     @Test
     public void test_node_Addition() {
         Node A = new Node();
         Node B = new Node();
 
-        A.setContent("Hello");
-        B.setContent(" World");
+        A.setContent("Apple Macs");
+        B.setContent(" Use the macOS operating system");
 
-        Adder adder = new Adder();
-        Node C = adder.add(A, B);
+        NodeAdder nodeAdder = new NodeAdder();
+        Node C = nodeAdder.add(A, B);
 
-        String expected = "Hello World";
+        String expected = "Apple Macs Use the macOS operating system";
 
         Assertions.assertEquals(expected, C.getContent());
     }
 
+    //TEST 2 - Test Working
     @Test
     public void test_node_Addition_no_content() {
         Node A = new Node();
         Node B = new Node();
 
-        Adder adder = new Adder();
-        Node C = adder.add(A, B);
+        NodeAdder nodeAdder = new NodeAdder();
+        Node C = nodeAdder.add(A, B);
 
-        String expected = ""
+        String expected = "";
 
         Assertions.assertEquals(expected, C.getContent());
     }
-
+    //TEST 3 - Test Working
     @Test
     public void test_node_Addition_empty() {
         Node A = new Node();
         Node B = new Node();
 
-        A.setContent("Hello");
+        A.setContent("Apple Macs");
         B.setContent("");
 
-        Adder adder = new Adder();
-        Node C = adder.add(A, B);
+        NodeAdder nodeAdder = new NodeAdder();
+        Node C = nodeAdder.add(A, B);
 
-        String expected = "Hello";
+        String expected = "Apple Macs";
 
         Assertions.assertEquals(expected, C.getContent());
     }

@@ -1,6 +1,6 @@
 import models.Node;
 
-public class Adder {
+public class NodeAdder {
     public Node add(Node A, Node B) {
         Node C = new Node();
         if (A.getContent() == null || B.getContent() == null) {
