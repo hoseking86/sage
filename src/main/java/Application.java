@@ -169,7 +169,7 @@ public class Application {
                         break;
 
                     case "6":
-                        System.out.println("Logging out...");
+                        System.out.println("Thank you for using Sage the program is now Logging you out...");
                         running = false;  // this will exit the while loop
                         break;
 
